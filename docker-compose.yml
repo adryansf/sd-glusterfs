@@ -1,0 +1,31 @@
+version: "3"
+services:
+  gluster-server-1:
+    image: gluster/gluster-centos
+    container_name: gluster-server-1
+    privileged: true
+    networks:
+      - gluster-net
+    volumes:
+      - gluster-data-1:/data/gluster
+    command:
+      - "/usr/sbin/init"
+
+  gluster-server-2:
+    image: gluster/gluster-centos
+    container_name: gluster-server-2
+    privileged: true
+    networks:
+      - gluster-net
+    volumes:
+      - gluster-data-2:/data/gluster
+    command:
+      - "/usr/sbin/init"
+
+networks:
+  gluster-net:
+    driver: bridge
+
+volumes:
+  gluster-data-1:
+  gluster-data-2:
